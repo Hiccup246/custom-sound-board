@@ -14,7 +14,10 @@ export default {
       "soft-cyan": "#2aa198",
       "soft-white": "rgb(232, 235, 237)",
       "soft-grey": "rgb(164, 168, 173)",
-      "white": "#FFFFFF"
+      "white": "#FFFFFF",
+      "light-pink": "#FCF1EC",
+      "black": "#000000",
+      "lightest-grey": "#dbdbdb"
     },
     extend: {
       gridTemplateColumns: {

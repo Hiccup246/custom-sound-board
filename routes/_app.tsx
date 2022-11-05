@@ -6,9 +6,32 @@ export default function App({ Component }: AppProps) {
     <>
       <Head>
         <link rel="stylesheet" href="./app.css" />
+        <script type="text/javascript">
+          {`
+            const themeSet = 'theme' in localStorage
+
+            if (themeSet) {
+              if (localStorage.theme == 'dark') {
+                document.documentElement.classList.add('dark')
+              } else {
+                document.documentElement.classList.remove('dark')
+              }
+            } else {
+              const systemHasDarkThemePreference = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+              if (systemHasDarkThemePreference) {
+                localStorage.theme = 'dark'
+                document.documentElement.classList.add('dark')
+              } else {
+                localStorage.theme = 'light'
+                document.documentElement.classList.remove('dark')
+              }
+            }
+          `}
+        </script>
       </Head>
       
-      <body class="bg-dark-black text-white">
+      <body class="dark:bg-dark-black dark:text-white bg-light-pink text-black">
         <div class="w-11/12 mx-auto">
           <Component />
         </div>
