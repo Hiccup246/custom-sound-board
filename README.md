@@ -50,6 +50,7 @@ This will begin a development server, watch the project directory and restart as
 <br>
 
 ## 🔮 Future Additions
+- Add search bar active/focus styles for dark mode and maybe light mode
 - Optimise lighthouse mobile score
 - Add the ability to sort clips by directory name
 - Add functionality to track the most used clips
