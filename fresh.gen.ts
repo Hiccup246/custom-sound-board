@@ -8,6 +8,7 @@ import * as $1 from "./routes/_app.tsx";
 import * as $2 from "./routes/index.tsx";
 import * as $$0 from "./islands/SoundBoard.tsx";
 import * as $$1 from "./islands/SoundBoardButton.tsx";
+import * as $$2 from "./islands/ThemeToggle.tsx";
 
 const manifest = {
   routes: {
@@ -18,6 +19,7 @@ const manifest = {
   islands: {
     "./islands/SoundBoard.tsx": $$0,
     "./islands/SoundBoardButton.tsx": $$1,
+    "./islands/ThemeToggle.tsx": $$2,
   },
   baseUrl: import.meta.url,
   config,

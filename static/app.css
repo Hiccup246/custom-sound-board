@@ -11,4 +11,8 @@
         /* Remove default */
         -webkit-appearance: none;
     }
+
+    input:checked ~ .dot {
+        transform: translateX(100%);
+    }
 }

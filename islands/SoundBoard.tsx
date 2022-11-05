@@ -27,7 +27,7 @@ export default function SoundBoard({ soundClips }: SoundBoardProps ) {
 
     return (
         <div>
-            <div class="sticky top-0 h-24 bg-dark-black flex flex-col justify-center">
+            <div class="sticky top-0 h-24 dark:bg-dark-black bg-light-pink flex flex-col justify-center">
                 <label class="w-full relative block mx-auto">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                        <SearchIcon />
@@ -39,7 +39,8 @@ export default function SoundBoard({ soundClips }: SoundBoardProps ) {
                             placeholder:italic placeholder:soft-grey
                             focus:outline-none focus:shadow
                             active:outline-none active:shadow
-                            bg-dark-grey text-soft-white border border-soft-cyan rounded-md
+                            dark:bg-dark-grey dark:border-soft-cyan
+                            bg-white text-black border border-white rounded-md
                             py-2 pl-9 pr-3 sm:text-sm"
                         onInput={(event) => setSearchQuery((event.target as HTMLInputElement).value)}
                         placeholder="Search..."
@@ -51,7 +52,7 @@ export default function SoundBoard({ soundClips }: SoundBoardProps ) {
             <div 
                 class="
                 w-full mx-auto min-h-[calc(100vh-var(--header-height))]
-                bg-dark-black justify-center mb-32 mt-2
+                dark:bg-dark-black bg-light-pink justify-center mb-32 mt-2
                 grid gap-4 auto-rows-min grid-cols-soundboard">
                 { 
                     filteredSoundClipElements()

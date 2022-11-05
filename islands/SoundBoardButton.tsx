@@ -25,9 +25,9 @@ export default function SoundClipButton({ src, name }: SoundClip) {
 
     function loadedClassed() {
         if (audioLoaded) {
-          return "bg-dark-grey hover:bg-light-grey-dark"
+          return "dark:bg-dark-grey bg-white dark:hover:bg-light-grey-dark hover:bg-lightest-grey hover:border-lightest-grey"
         } else {
-          return "bg-soft-grey cursor-default"
+          return "dark:bg-soft-grey bg-lightest-grey border-lightest-grey cursor-default"
         }
     }
 
@@ -38,9 +38,10 @@ export default function SoundClipButton({ src, name }: SoundClip) {
         className={`
           w-40 h-28 rounded-md
           border shadow-sm
-          text-soft-white p-3.5 button
+          dark:text-soft-white dark:border-soft-cyan dark:focus:bg-dark-teal
+          text-black p-3.5 button
           text-center break-words overflow-y-hidden
-          border-soft-cyan focus:bg-dark-teal focus:outline-none
+          border-white focus:bg-lightest-grey focus:border-lightest-grey focus:outline-none
           ${loadedClassed()}
         `}
         >
