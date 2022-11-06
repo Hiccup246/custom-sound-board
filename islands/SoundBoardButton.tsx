@@ -17,6 +17,10 @@ export default function SoundClipButton({ src, name }: SoundClip) {
 
     function playAudio(event: MouseEvent) {
         event.preventDefault();
+        
+        if (event.target) {
+          (event.target as HTMLButtonElement).focus()
+        }
 
         if (!audio) return
         audio.stop();

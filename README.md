@@ -50,7 +50,6 @@ This will begin a development server, watch the project directory and restart as
 <br>
 
 ## 🔮 Future Additions
-- Optimise lighthouse mobile score
 - Add functionality to track the most used clips
 - Add the ability to filter cards by most used
-- Think about the colour of the sound clip buttons after clicked
+- Optimise lighthouse mobile score
