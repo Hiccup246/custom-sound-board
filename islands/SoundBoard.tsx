@@ -70,7 +70,7 @@ export default function SoundBoard({ soundClips, soundClipDirs }: SoundBoardProp
                             placeholder:italic placeholder:soft-grey
                             focus:outline-none focus:shadow
                             active:outline-none active:shadow
-                            dark:bg-dark-grey dark:border-soft-cyan
+                            dark:bg-dark-grey dark:border-soft-cyan dark:text-soft-white
                             bg-white text-black border border-white rounded-md
                             py-2 pl-9 pr-3 sm:text-sm"
                         onInput={(event) => setSearchQuery((event.target as HTMLInputElement).value)}
