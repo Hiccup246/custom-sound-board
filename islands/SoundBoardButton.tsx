@@ -39,6 +39,7 @@ export default function SoundClipButton({ src, name }: SoundClip) {
           w-40 h-28 rounded-md
           border shadow-sm
           dark:text-soft-white dark:border-soft-cyan dark:focus:bg-dark-teal
+          dark:hover:border-soft-cyan
           text-black p-3.5 button
           text-center break-words overflow-y-hidden
           border-white focus:bg-lightest-grey focus:border-lightest-grey focus:outline-none
