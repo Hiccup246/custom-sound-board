@@ -9,26 +9,43 @@ export type SoundBoardProps = {
 
 export default function SoundBoard({ soundClips, soundClipDirs }: SoundBoardProps ) {
     const [searchQuery, setSearchQuery] = useState("")
+    const [selectedDirs, setSelectedDirs] = useState(new Array<string>())
 
     const soundClipElements = soundClips.map((soundClip: SoundClip) => {
         return (
-            <SoundBoardButton src={soundClip.src} name={soundClip.name} key={soundClip.name}/>
+            <SoundBoardButton src={soundClip.src} name={soundClip.name} key={soundClip.src}/>
         )
-    })    
+    })
 
     function filteredSoundClipElements() {
+        const dirs = selectedDirs.join("")
+
+        const filteredByDir = soundClipElements.filter((clip: preact.JSX.Element)=>{
+            const processedSrc = clip.props.src.replaceAll("/","")
+    
+            if (processedSrc.search(dirs) >= 0) return clip
+        })
+
         if (searchQuery) {
-            return soundClipElements.filter((clip: preact.JSX.Element)=>{
-            return clip.props.name.search(searchQuery) == 0
+            return filteredByDir.filter((clip: preact.JSX.Element)=>{
+            return clip.props.name.search(searchQuery) >= 0
             })   
         } else {
-            return soundClipElements
+            return filteredByDir
+        }
+    }
+
+    function directorySelected(checked: boolean, dir: string) {
+        if (checked) {
+            setSelectedDirs([...selectedDirs, dir])
+        } else {
+            setSelectedDirs(selectedDirs.filter((item) => item != dir))
         }
     }
 
     return (
         <div>
-            <div class="sticky top-0 h-24 dark:bg-dark-black bg-light-pink flex flex-col justify-center">
+            <div class="sticky top-0 h-40 dark:bg-dark-black bg-light-pink flex flex-col justify-center">
                 <label class="w-full relative block mx-auto">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                        <SearchIcon />
@@ -49,6 +66,19 @@ export default function SoundBoard({ soundClips, soundClipDirs }: SoundBoardProp
                         name="search"
                     />
                 </label>
+
+                <div class="mt-4 pl-2 flex flex-row flex-wrap">
+                    {
+                        soundClipDirs.map((dir) => {
+                            return (
+                                <label class="flex mr-2" onChange={(event:Event) => directorySelected((event.target as HTMLInputElement).checked, dir)}>
+                                    <span class="my-auto align-center mr-1">{ dir }</span>
+                                    <input type="checkbox" class="my-auto h-4 w-4"/>
+                                </label>
+                            )
+                        })
+                    }
+                </div>
             </div>
             <div 
                 class="
