@@ -58,7 +58,7 @@ export default function SoundBoard({ soundClips, soundClipDirs }: SoundBoardProp
 
     return (
         <div>
-            <div class="sticky top-0 h-40 dark:bg-dark-black bg-light-pink flex flex-col justify-center">
+            <div class="sticky top-0 h-36 dark:bg-dark-black bg-light-pink flex flex-col pt-6">
                 <label class="w-full relative block mx-auto">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-2">
                        <SearchIcon />
@@ -80,13 +80,13 @@ export default function SoundBoard({ soundClips, soundClipDirs }: SoundBoardProp
                     />
                 </label>
 
-                <div class="mt-4 pl-2 flex flex-row flex-wrap">
+                <div class="pl-2 flex flex-row flex-wrap overflow-y-scroll">
                     {
                         soundClipDirs.map((dir) => {
                             return (
-                                <label class="flex mr-2" onChange={(event:Event) => directorySelected((event.target as HTMLInputElement).checked, dir)}>
+                                <label class="flex mr-2 mt-2" onChange={(event:Event) => directorySelected((event.target as HTMLInputElement).checked, dir)}>
                                     <span class="my-auto align-center mr-1">{ dir }</span>
-                                    <input type="checkbox" class="my-auto h-4 w-4"/>
+                                    <input type="checkbox" name="checkbox" class="my-auto h-4 w-4"/>
                                 </label>
                             )
                         })
