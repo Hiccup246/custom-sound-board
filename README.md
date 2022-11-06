@@ -4,7 +4,7 @@
 
 A project allowing custom sound bites to be played
 
-![](https://i.imgur.com/JyN0wTj.png)
+![](https://i.imgur.com/OLKlR3Q.png)
 
 <br>
 
