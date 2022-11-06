@@ -17,29 +17,42 @@ export default function SoundBoard({ soundClips, soundClipDirs }: SoundBoardProp
         )
     })
 
-    function filteredSoundClipElements() {
-        const dirs = selectedDirs.join("")
+    function filterByDirectories(soundClips: preact.JSX.Element[]): preact.JSX.Element[] {
+        if (selectedDirs.length) {
+            // ["a", "x", "y"] => "abc"
+            const dirsString = selectedDirs.join("")
 
-        const filteredByDir = soundClipElements.filter((clip: preact.JSX.Element)=>{
-            const processedSrc = clip.props.src.replaceAll("/","")
-    
-            if (processedSrc.search(dirs) >= 0) return clip
-        })
+            return soundClips.filter((clip: preact.JSX.Element) => {
+                // a/b/c => "abc"
+                const processedSrc = clip.props.src.replaceAll("/","")
+        
+                // "abc".search("axy")
+                if (processedSrc.search(dirsString) >= 0) return clip
+            })
+        } else {
+            return soundClips;
+        }
+    }
 
+    function filterBySearchQuery(soundClips: preact.JSX.Element[]): preact.JSX.Element[] {
         if (searchQuery) {
-            return filteredByDir.filter((clip: preact.JSX.Element)=>{
+            return soundClips.filter((clip: preact.JSX.Element)=>{
             return clip.props.name.search(searchQuery) >= 0
             })   
         } else {
-            return filteredByDir
+            return soundClips
         }
+    }
+
+    function filteredSoundClipElements() {
+        return filterBySearchQuery(filterByDirectories(soundClipElements));
     }
 
     function directorySelected(checked: boolean, dir: string) {
         if (checked) {
             setSelectedDirs([...selectedDirs, dir])
         } else {
-            setSelectedDirs(selectedDirs.filter((item) => item != dir))
+            setSelectedDirs(selectedDirs.filter((selDir) => selDir != dir))
         }
     }
 
