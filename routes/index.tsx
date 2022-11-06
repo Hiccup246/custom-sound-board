@@ -3,10 +3,11 @@ import { HeadElement } from "@/components/HeadElement.tsx";
 import SoundBoard from "@/islands/SoundBoard.tsx";
 import { Handlers, PageProps } from "$fresh/server.ts";
 
-export const handler: Handlers<SoundClip[]> = {
+export const handler: Handlers<{ soundClips: SoundClip[], soundClipDirs: string[]}> = {
   async GET(_, ctx) {
-    const soundClips = await soundClipPaths("./static/sound-clips")
-    return ctx.render(soundClips);
+    const soundClips = await soundClipPaths("./static/sound-clips");
+    const soundClipDirs = await soundClipDirectories("./static/sound-clips");
+    return ctx.render({ soundClips, soundClipDirs });
   },
 };
 
@@ -32,9 +33,23 @@ async function soundClipPaths(currentPath: string): Promise<SoundClip[]> {
   return soundClips
 }
 
-export default function Home({ data }: PageProps<SoundClip[]>) {
-  
+async function soundClipDirectories(currentPath: string): Promise<string[]> {
+  const soundClipDirs: string[] = [];
 
+  for await (const dirEntry of Deno.readDir(currentPath)) {
+      const dirEntryName = dirEntry.name;
+      const entryPath = `${currentPath}/${dirEntry.name}`;
+
+      if (dirEntry.isDirectory) {
+        soundClipDirs.push(dirEntryName);
+        soundClipDirs.push(...await soundClipDirectories(entryPath));
+      }
+  }
+
+  return soundClipDirs
+}
+
+export default function Home({ data }: PageProps<{ soundClips: SoundClip[], soundClipDirs: string[] }>) {
   return (
     <div class="flex flex-start flex-col">
       <HeadElement
@@ -42,7 +57,7 @@ export default function Home({ data }: PageProps<SoundClip[]>) {
         title="Custom Sound Board"
         url={new URL("https://www.custom-sound-board.com")}
        />
-      <SoundBoard soundClips={data} />
+      <SoundBoard soundClips={data.soundClips} soundClipDirs={data.soundClipDirs} />
       <SoundBoardFooter />
     </div>
   );

@@ -3,10 +3,11 @@ import SoundBoardButton from "@/islands/SoundBoardButton.tsx";
 import SearchIcon from "@/components/SearchIcon.tsx";
 
 export type SoundBoardProps = {
-    soundClips: SoundClip[];
+    soundClips: SoundClip[],
+    soundClipDirs: string[]
 };
 
-export default function SoundBoard({ soundClips }: SoundBoardProps ) {
+export default function SoundBoard({ soundClips, soundClipDirs }: SoundBoardProps ) {
     const [searchQuery, setSearchQuery] = useState("")
 
     const soundClipElements = soundClips.map((soundClip: SoundClip) => {
