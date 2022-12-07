@@ -52,11 +52,7 @@ async function soundClipDirectories(currentPath: string): Promise<string[]> {
 export default function Home({ data }: PageProps<{ soundClips: SoundClip[], soundClipDirs: string[] }>) {
   return (
     <div class="flex flex-start flex-col">
-      <HeadElement
-        description="A custom sound board"
-        title="Custom Sound Board"
-        url={new URL("https://www.custom-sound-board.com")}
-       />
+      <HeadElement />
       <SoundBoard soundClips={data.soundClips} soundClipDirs={data.soundClipDirs} />
       <SoundBoardFooter />
     </div>
