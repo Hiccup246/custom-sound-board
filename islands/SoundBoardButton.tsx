@@ -8,7 +8,9 @@ export default function SoundClipButton({ src, name }: SoundClip) {
     useEffect(() => {
         const audioClip = new Howl({
             src: location.href + src.slice(2),
-            onload: () => { if (!audioLoaded) { setAudioLoaded(true) } },
+            autoplay: false,
+            preload: true,
+            onload: () => { if (!audioLoaded) { setAudioLoaded(true); } },
             volume: 1.0
           });
 
