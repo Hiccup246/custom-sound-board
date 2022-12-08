@@ -6,30 +6,6 @@ export default function App({ Component }: AppProps) {
     <>
       <Head>
         <link rel="stylesheet" href="./app.css" />
-        <script type="text/javascript">
-          {`
-            const themeSet = 'theme' in localStorage
-
-            if (themeSet) {
-              if (localStorage.theme == 'dark') {
-                document.documentElement.classList.add('dark')
-              } else {
-                document.documentElement.classList.remove('dark')
-              }
-            } else {
-              const systemHasDarkThemePreference = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-              if (systemHasDarkThemePreference) {
-                localStorage.theme = 'dark'
-                document.documentElement.classList.add('dark')
-              } else {
-                localStorage.theme = 'light'
-                document.documentElement.classList.remove('dark')
-              }
-            }
-          `}
-        </script>
-
         <meta charSet="utf-8" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -48,6 +24,7 @@ export default function App({ Component }: AppProps) {
         <link rel="canonical" href="https://www.custom-sound-board.com/" />
         <link rel="manifest" href="/site.webmanifest" />
         <link href="https://www.custom-sound-board.com/" rel="publisher" />
+        <script type="text/javascript" src="/themeLoader.js"></script>
       </Head>
       
       <body class="dark:bg-dark-black dark:text-white bg-light-pink text-black">
