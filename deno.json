@@ -7,7 +7,12 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "types": [
-      "./types/global"
+      "./types/global.d.ts"
+    ],
+    "lib": [
+      "dom",
+      "deno.ns",
+      "deno.unstable"
     ]
   }
 }
