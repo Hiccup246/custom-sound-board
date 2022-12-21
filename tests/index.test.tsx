@@ -1,6 +1,6 @@
 import { assertEquals } from "https://deno.land/std@0.168.0/testing/asserts.ts";
 import { afterEach, beforeEach, describe, it } from "https://deno.land/std@0.168.0/testing/bdd.ts";
-import { soundClipPaths, soundClipDirectories } from "./index.tsx";
+import { soundClipPaths, soundClipDirectories } from "@/routes/index.tsx";
 
 describe("soundClipDirectories", () => {
     beforeEach(async () => {
