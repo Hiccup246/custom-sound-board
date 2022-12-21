@@ -4,7 +4,7 @@
 
 A project allowing custom sound bites to be played
 
-![](https://i.imgur.com/OLKlR3Q.png)
+![Site Screenshot](https://raw.githubusercontent.com/Hiccup246/custom-sound-board/main/static/site-screenshot.webp)
 
 <br>
 
