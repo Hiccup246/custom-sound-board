@@ -11,7 +11,7 @@ export const handler: Handlers<{ soundClips: SoundClip[], soundClipDirs: string[
   },
 };
 
-async function soundClipPaths(currentPath: string): Promise<SoundClip[]> {
+export async function soundClipPaths(currentPath: string): Promise<SoundClip[]> {
   const soundClips: SoundClip[] = [];
 
   for await (const dirEntry of Deno.readDir(currentPath)) {
@@ -20,7 +20,8 @@ async function soundClipPaths(currentPath: string): Promise<SoundClip[]> {
 
       if (dirEntry.isFile && dirEntryName.endsWith(".mp3")) {
           const clipNameWithoutExtension = dirEntryName.slice(0, -4);
-          const clipPathWithoutStaticDir = "./" + entryPath.slice(9)
+          const endOfFirstDirectory = entryPath.indexOf("/", 2)
+          const clipPathWithoutStaticDir = "." + entryPath.slice(endOfFirstDirectory)
 
           soundClips.push({ src: clipPathWithoutStaticDir, name: clipNameWithoutExtension })
       }
@@ -33,7 +34,7 @@ async function soundClipPaths(currentPath: string): Promise<SoundClip[]> {
   return soundClips
 }
 
-async function soundClipDirectories(currentPath: string): Promise<string[]> {
+export async function soundClipDirectories(currentPath: string): Promise<string[]> {
   const soundClipDirs: string[] = [];
 
   for await (const dirEntry of Deno.readDir(currentPath)) {
