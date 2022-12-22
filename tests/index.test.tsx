@@ -16,13 +16,13 @@ describe("soundClipDirectories", () => {
     await Deno.remove("dir1", { recursive: true });
   });
 
-  it("returns an empty array when a directory with no nested directories is given", async () => {
+  it("returns an empty array when the directory is empty", async () => {
     const directories: string[] = await soundClipDirectories("./dir1");
 
     assertEquals(directories, []);
   });
 
-  it("returns the names of all top level directories when given a directory with multiple top level directories", async () => {
+  it("returns the names of all top level directories when the directory has multiple", async () => {
     await Deno.mkdir("dir1/dir2");
     await Deno.mkdir("dir1/dir3");
 
@@ -31,7 +31,7 @@ describe("soundClipDirectories", () => {
     assertEquals(directories, ["dir2", "dir3"]);
   });
 
-  it("does not return the names of non-directories", async () => {
+  it("does not return the names of non-directories when the directory has one", async () => {
     await Deno.writeTextFile("./dir1/example1.mp3", "");
     await Deno.mkdir("dir1/dir2");
 
@@ -40,7 +40,7 @@ describe("soundClipDirectories", () => {
     assertEquals(directories, ["dir2"]);
   });
 
-  it("returns the names of all nested directories if multiple exist", async () => {
+  it("returns the names of all nested directories when the directory has multiple", async () => {
     await Deno.mkdir("dir1/dir2");
     await Deno.mkdir("dir1/dir2/dir3");
     await Deno.mkdir("dir1/dir2/dir3/dir4");
@@ -61,13 +61,13 @@ describe("soundClipPaths", () => {
     await Deno.remove("dir1", { recursive: true });
   });
 
-  it("returns an empty array when a empty directory is given", async () => {
+  it("returns an empty array when an empty directory is given", async () => {
     const soundClips: SoundClip[] = await soundClipPaths("./dir1");
 
     assertEquals(soundClips, []);
   });
 
-  it("returns the names of all top level mp3 files", async () => {
+  it("returns the name and src of all top level mp3 files when the directory contains multiple", async () => {
     await Deno.writeTextFile("dir1/exampleOne.mp3", "");
     await Deno.writeTextFile("dir1/exampleTwo.mp3", "");
 
@@ -79,7 +79,7 @@ describe("soundClipPaths", () => {
     }]);
   });
 
-  it("does not return non-mp3 files", async () => {
+  it("does not return non-mp3 files when the directory has one", async () => {
     await Deno.writeTextFile("dir1/exampleOne.txt", "");
 
     const soundClips: SoundClip[] = await soundClipPaths("./dir1");
@@ -87,7 +87,7 @@ describe("soundClipPaths", () => {
     assertEquals(soundClips, []);
   });
 
-  it("does not return the name of directories", async () => {
+  it("does not return the name of directories when the directory has one", async () => {
     await Deno.writeTextFile("dir1/exampleOne.mp3", "");
     await Deno.mkdir("dir1/dir2");
 
@@ -96,7 +96,7 @@ describe("soundClipPaths", () => {
     assertEquals(soundClips, [{ src: "./exampleOne.mp3", name: "exampleOne" }]);
   });
 
-  it("returns the names of all nested mp3 files if multiple exist", async () => {
+  it("returns the names and src of all nested mp3 files when the directory has multiple", async () => {
     await Deno.mkdir("dir1/dir2");
     await Deno.writeTextFile("dir1/dir2/exampleOne.mp3", "");
     await Deno.mkdir("dir1/dir2/dir3");

@@ -7,7 +7,7 @@ export type SoundBoardProps = {
   soundClipDirs: string[];
 };
 
-export function filterByDirectories(
+export function filterByClipSource(
   soundClips: preact.JSX.Element[],
   directories: string[],
 ): preact.JSX.Element[] {
@@ -27,7 +27,7 @@ export function filterByDirectories(
   }
 }
 
-export function filterBySearchQuery(
+export function filterByClipName(
   soundClips: preact.JSX.Element[],
   searchQuery: string,
 ): preact.JSX.Element[] {
@@ -57,11 +57,11 @@ export default function SoundBoard(
   });
 
   function filteredSoundClipElements() {
-    const filteredByDirectories = filterByDirectories(
+    const filteredByDirectories = filterByClipSource(
       soundClipElements,
       selectedDirs,
     );
-    const filteredBySearchQuery = filterBySearchQuery(
+    const filteredBySearchQuery = filterByClipName(
       filteredByDirectories,
       searchQuery,
     );

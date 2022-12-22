@@ -1,10 +1,7 @@
 import { assertEquals } from "https://deno.land/std@0.168.0/testing/asserts.ts";
 import { describe, it } from "https://deno.land/std@0.168.0/testing/bdd.ts";
 import SoundBoardButton from "@/islands/SoundBoardButton.tsx";
-import {
-  filterByDirectories,
-  filterBySearchQuery,
-} from "@/islands/SoundBoard.tsx";
+import { filterByClipName, filterByClipSource } from "@/islands/SoundBoard.tsx";
 
 const mockSoundButtons: preact.JSX.Element[] = [
   <SoundBoardButton src="a/b/c" name="clipOne" key="a/b/c" />,
@@ -21,15 +18,15 @@ const mockSoundButtons: preact.JSX.Element[] = [
   />,
 ];
 
-describe("filterByDirectories", () => {
-  it("allows SoundBoardButtons to be filtered by a single directory path", () => {
-    const filteredDirectories = filterByDirectories(mockSoundButtons, ["1"]);
+describe("filterByClipSource", () => {
+  it("can filter SoundBoardButtons by a single directory path", () => {
+    const filteredDirectories = filterByClipSource(mockSoundButtons, ["1"]);
 
     assertEquals(filteredDirectories, [mockSoundButtons[1]]);
   });
 
-  it("allows SoundBoardButtons to be filtered by multiple directory paths", () => {
-    const filteredDirectories = filterByDirectories(mockSoundButtons, [
+  it("can filter SoundBoardButtons using multiple directory paths by matching the first directory then the second", () => {
+    const filteredDirectories = filterByClipSource(mockSoundButtons, [
       "a",
       "mock",
     ]);
@@ -37,8 +34,8 @@ describe("filterByDirectories", () => {
     assertEquals(filteredDirectories, [mockSoundButtons[2]]);
   });
 
-  it("does not allow SoundBoardButtons to be filtered by nested directories", () => {
-    const filteredDirectories = filterByDirectories(mockSoundButtons, [
+  it("can filter SoundBoardButtons using multiple nested directories", () => {
+    const filteredDirectories = filterByClipSource(mockSoundButtons, [
       "mock",
       "directory",
     ]);
@@ -50,7 +47,7 @@ describe("filterByDirectories", () => {
   });
 
   it("returns no results when the top level directory does not exist", () => {
-    const filteredDirectories = filterByDirectories(mockSoundButtons, [
+    const filteredDirectories = filterByClipSource(mockSoundButtons, [
       "random",
       "directory",
     ]);
@@ -59,15 +56,15 @@ describe("filterByDirectories", () => {
   });
 
   it("returns all SoundBoardButtons when no directories are given", () => {
-    const filteredDirectories = filterByDirectories(mockSoundButtons, []);
+    const filteredDirectories = filterByClipSource(mockSoundButtons, []);
 
     assertEquals(filteredDirectories, mockSoundButtons);
   });
 });
 
-describe("filterBySearchQuery", () => {
-  it("allows SoundBoardButtons to be filtered by an exact match search query", () => {
-    const filteredDirectories = filterBySearchQuery(
+describe("filterByClipName", () => {
+  it("can filter SoundBoardButtons by an exact match search query", () => {
+    const filteredDirectories = filterByClipName(
       mockSoundButtons,
       "clipOne",
     );
@@ -75,14 +72,14 @@ describe("filterBySearchQuery", () => {
     assertEquals(filteredDirectories, [mockSoundButtons[0]]);
   });
 
-  it("allows SoundBoardButtons to be filtered by a fuzzy match search query", () => {
-    const filteredDirectories = filterBySearchQuery(mockSoundButtons, "clip");
+  it("can filter SoundBoardButtons by a fuzzy match search query", () => {
+    const filteredDirectories = filterByClipName(mockSoundButtons, "clip");
 
     assertEquals(filteredDirectories, mockSoundButtons);
   });
 
   it("returns all SoundBoardButtons when no search query is given", () => {
-    const filteredDirectories = filterBySearchQuery(mockSoundButtons, "");
+    const filteredDirectories = filterByClipName(mockSoundButtons, "");
 
     assertEquals(filteredDirectories, mockSoundButtons);
   });
