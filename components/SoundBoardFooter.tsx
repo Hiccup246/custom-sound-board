@@ -17,7 +17,7 @@ export function SoundBoardFooter() {
 
       <a
         class="hover:underline flex gap-2 items-center dark:text-white text-black my-auto mb-4 sm:mb-auto w-52 place-content-center"
-        href="https://github.com/Hiccup246/sound-board"
+        href="https://github.com/Hiccup246/custom-sound-board"
       >
         <GitHubIcon class="h-5 w-5 dark:text-gray-500 dark:text-white text-black" />
         Source
