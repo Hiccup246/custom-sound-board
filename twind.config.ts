@@ -18,12 +18,12 @@ export default {
       "white": "#FFFFFF",
       "light-pink": "#FCF1EC",
       "black": "#000000",
-      "lightest-grey": "#dbdbdb"
+      "lightest-grey": "#dbdbdb",
     },
     extend: {
       gridTemplateColumns: {
-        "soundboard": "repeat(auto-fill, 160px)"
-      }
-    }
-  }
+        "soundboard": "repeat(auto-fill, 160px)",
+      },
+    },
+  },
 } as Options;

@@ -8,12 +8,29 @@ export default function App({ Component }: AppProps) {
         <link rel="stylesheet" href="./app.css" />
         <meta charSet="utf-8" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
 
         <title>Custom Sound Board</title>
-        <meta name="description" content="A custom sound board to play your favourite sounds" />
+        <meta
+          name="description"
+          content="A custom sound board to play your favourite sounds"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
         <meta
@@ -26,7 +43,7 @@ export default function App({ Component }: AppProps) {
         <link href="https://www.custom-sound-board.com/" rel="publisher" />
         <script type="text/javascript" src="/themeLoader.js"></script>
       </Head>
-      
+
       <body class="dark:bg-dark-black dark:text-white bg-light-pink text-black">
         <div class="w-11/12 mx-auto">
           <Component />
