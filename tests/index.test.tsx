@@ -7,6 +7,10 @@ import {
 } from "https://deno.land/std@0.168.0/testing/bdd.ts";
 import { soundClipDirectories, soundClipPaths } from "@/routes/index.tsx";
 
+const sortBySoundClipName = (a: SoundClip, b: SoundClip) => {
+  return a.name > b.name ? 1 : -1;
+};
+
 describe("soundClipDirectories", () => {
   beforeEach(async () => {
     await Deno.mkdir("dir1");
@@ -107,10 +111,15 @@ describe("soundClipPaths", () => {
 
     const soundClips: SoundClip[] = await soundClipPaths("./dir1");
 
-    assertEquals(soundClips, [
-      { src: "./dir2/dir3/dir4/exampleThree.mp3", name: "exampleThree" },
-      { src: "./dir2/dir3/exampleTwo.mp3", name: "exampleTwo" },
-      { src: "./dir2/exampleOne.mp3", name: "exampleOne" },
-    ]);
+    assertEquals(
+      soundClips.sort((a: SoundClip, b: SoundClip) => {
+        return a.name > b.name ? 1 : -1;
+      }),
+      [
+        { src: "./dir2/exampleOne.mp3", name: "exampleOne" },
+        { src: "./dir2/dir3/dir4/exampleThree.mp3", name: "exampleThree" },
+        { src: "./dir2/dir3/exampleTwo.mp3", name: "exampleTwo" },
+      ],
+    );
   });
 });
