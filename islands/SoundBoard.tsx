@@ -7,6 +7,33 @@ export type SoundBoardProps = {
     soundClipDirs: string[]
 };
 
+export function filterByDirectories(soundClips: preact.JSX.Element[], directories:string[]): preact.JSX.Element[] {
+    if (directories.length) {
+        // ["a", "x", "y"] => "abc"
+        const dirsString = directories.join("")
+
+        return soundClips.filter((clip: preact.JSX.Element) => {
+            // a/b/c => "abc"
+            const processedSrc = clip.props.src.replaceAll("/","")
+    
+            // "abc".search("axy")
+            if (processedSrc.search(dirsString) >= 0) return clip
+        })
+    } else {
+        return soundClips;
+    }
+}
+
+export function filterBySearchQuery(soundClips: preact.JSX.Element[], searchQuery:string): preact.JSX.Element[] {
+    if (searchQuery) {
+        return soundClips.filter((clip: preact.JSX.Element)=>{
+        return clip.props.name.search(searchQuery) >= 0
+        })   
+    } else {
+        return soundClips
+    }
+}
+
 export default function SoundBoard({ soundClips, soundClipDirs }: SoundBoardProps ) {
     const [searchQuery, setSearchQuery] = useState("")
     const [selectedDirs, setSelectedDirs] = useState(new Array<string>())
@@ -17,35 +44,11 @@ export default function SoundBoard({ soundClips, soundClipDirs }: SoundBoardProp
         )
     })
 
-    function filterByDirectories(soundClips: preact.JSX.Element[]): preact.JSX.Element[] {
-        if (selectedDirs.length) {
-            // ["a", "x", "y"] => "abc"
-            const dirsString = selectedDirs.join("")
-
-            return soundClips.filter((clip: preact.JSX.Element) => {
-                // a/b/c => "abc"
-                const processedSrc = clip.props.src.replaceAll("/","")
-        
-                // "abc".search("axy")
-                if (processedSrc.search(dirsString) >= 0) return clip
-            })
-        } else {
-            return soundClips;
-        }
-    }
-
-    function filterBySearchQuery(soundClips: preact.JSX.Element[]): preact.JSX.Element[] {
-        if (searchQuery) {
-            return soundClips.filter((clip: preact.JSX.Element)=>{
-            return clip.props.name.search(searchQuery) >= 0
-            })   
-        } else {
-            return soundClips
-        }
-    }
-
     function filteredSoundClipElements() {
-        return filterBySearchQuery(filterByDirectories(soundClipElements));
+        const filteredByDirectories = filterByDirectories(soundClipElements, selectedDirs)
+        const filteredBySearchQuery = filterBySearchQuery(filteredByDirectories, searchQuery)
+
+        return filteredBySearchQuery
     }
 
     function directorySelected(checked: boolean, dir: string) {
