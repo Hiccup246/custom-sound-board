@@ -1,10 +1,8 @@
-import { AppProps } from "$fresh/server.ts";
-import { Head } from "$fresh/runtime.ts";
-
-export default function App({ Component }: AppProps) {
+import { type PageProps } from "$fresh/server.ts";
+export default function App({ Component }: PageProps) {
   return (
-    <>
-      <Head>
+    <html>
+      <head>
         <meta charSet="utf-8" />
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -40,15 +38,14 @@ export default function App({ Component }: AppProps) {
         <link rel="canonical" href="https://www.custom-sound-board.com/" />
         <link rel="manifest" href="/site.webmanifest" />
         <link href="https://www.custom-sound-board.com/" rel="publisher" />
-        <link rel="stylesheet" href="./app.css" />
+        <link rel="stylesheet" href="./styles.css" />
         <script src="/themeLoader.js"></script>
-      </Head>
-
-      <div class="dark:bg-dark-black dark:text-white bg-light-pink text-black">
-        <div class="w-11/12 mx-auto dark:bg-dark-black dark:text-white bg-light-pink text-black">
-          <Component />
+      </head>
+      <body class="dark:bg-dark-black dark:text-white bg-light-pink text-black">
+      <div class="w-11/12 mx-auto">
+        <Component />
         </div>
-      </div>
-    </>
+      </body>
+    </html>
   );
 }

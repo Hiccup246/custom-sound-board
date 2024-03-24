@@ -1,6 +1,9 @@
-import { Options } from "$fresh/plugins/twind.ts";
+import { type Config } from "tailwindcss";
 
 export default {
+  content: [
+    "{routes,islands,components}/**/*.{ts,tsx}",
+  ],
   selfURL: import.meta.url,
   darkMode: "class",
   theme: {
@@ -19,11 +22,10 @@ export default {
       "light-pink": "#FCF1EC",
       "black": "#000000",
       "lightest-grey": "#dbdbdb",
+      "current": 'currentColor',
     },
-    extend: {
-      gridTemplateColumns: {
-        "soundboard": "repeat(auto-fill, 160px)",
-      },
+    gridTemplateColumns: {
+      "soundboard": "repeat(auto-fill, 160px)",
     },
   },
-} as Options;
+} satisfies Config;

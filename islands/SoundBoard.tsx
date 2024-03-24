@@ -88,7 +88,7 @@ export default function SoundBoard(
           <input
             class="
               w-full block
-              placeholder::italic placeholder::soft-grey
+              placeholder:italic placeholder:soft-grey
               focus:outline-none focus:shadow dark:focus:border-teal
               active:outline-none active:shadow dark:active:border-teal
               dark:bg-dark-grey dark:border-soft-cyan dark:text-soft-white
