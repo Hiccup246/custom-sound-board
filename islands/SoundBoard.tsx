@@ -11,20 +11,17 @@ export function filterByClipSource(
   soundClips: preact.JSX.Element[],
   directories: string[],
 ): preact.JSX.Element[] {
-  if (directories.length) {
-    // ["a", "x", "y"] => "abc"
-    const dirsString = directories.join("");
+  if (directories.length < 1) return soundClips;
 
-    return soundClips.filter((clip: preact.JSX.Element) => {
-      // a/b/c => "abc"
-      const processedSrc = clip.props.src.replaceAll("/", "");
+  return soundClips.filter((clip: preact.JSX.Element) => {
+    // a/b/c => "abc"
+    const processedSrc: string = clip.props.src.replaceAll("/", "");
 
-      // "abc".search("axy")
-      if (processedSrc.search(dirsString) >= 0) return clip;
-    });
-  } else {
-    return soundClips;
-  }
+    // "[abc, 1234]".find("abc" => xyzabc)
+    const found = directories.find((dir) => processedSrc.includes(dir));
+
+    if (found) return clip;
+  });
 }
 
 export function filterByClipName(
