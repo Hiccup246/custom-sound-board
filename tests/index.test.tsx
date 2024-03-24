@@ -32,7 +32,7 @@ describe("soundClipDirectories", () => {
 
     const directories: string[] = await soundClipDirectories("./dir1");
 
-    assertEquals(directories, ["dir2", "dir3"]);
+    assertEquals(directories.sort(), ["dir2", "dir3"].sort());
   });
 
   it("does not return the names of non-directories when the directory has one", async () => {
