@@ -87,13 +87,13 @@ export default function SoundBoard(
           <span class="sr-only">Search</span>
           <input
             class="
-                            w-full block
-                            placeholder:italic placeholder:soft-grey
-                            focus:outline-none focus:shadow dark:focus:border-teal
-                            active:outline-none active:shadow dark:active:border-teal
-                            dark:bg-dark-grey dark:border-soft-cyan dark:text-soft-white
-                            bg-white text-black border border-white rounded-md
-                            py-2 pl-9 pr-3 sm:text-sm"
+              w-full block
+              placeholder::italic placeholder::soft-grey
+              focus:outline-none focus:shadow dark:focus:border-teal
+              active:outline-none active:shadow dark:active:border-teal
+              dark:bg-dark-grey dark:border-soft-cyan dark:text-soft-white
+              bg-white text-black border border-white rounded-md
+              py-2 pl-9 pr-3 sm:text-sm"
             onInput={(event) =>
               setSearchQuery((event.target as HTMLInputElement).value)}
             placeholder="Search..."

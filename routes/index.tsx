@@ -64,7 +64,7 @@ export default function Home(
   { data }: PageProps<{ soundClips: SoundClip[]; soundClipDirs: string[] }>,
 ) {
   return (
-    <div class="flex flex-start flex-col">
+    <div class="flex flex-col">
       <HeadElement />
       <SoundBoard
         soundClips={data.soundClips}
