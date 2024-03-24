@@ -5,7 +5,7 @@ export default function FreshIcon() {
       width="50"
       height="37"
       fill="none"
-      aria-labelledby="Fresh Logo"
+      aria-label="Fresh Logo"
     >
       <title>Fresh Logo</title>
       <path

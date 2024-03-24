@@ -7,6 +7,7 @@ export default function GitHubIcon(props: { class?: string }) {
       viewBox="0 0 14 14"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-label="Github Logo"
     >
       <g clip-path="url(#clip0_1989_191)">
         <path
