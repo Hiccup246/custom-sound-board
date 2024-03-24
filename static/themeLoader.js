@@ -8,7 +8,7 @@ if (themeSet) {
   }
 } else {
   const systemHasDarkThemePreference =
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
+    globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
 
   if (systemHasDarkThemePreference) {
     localStorage.theme = "dark";

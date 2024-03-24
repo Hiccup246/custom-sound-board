@@ -22,7 +22,7 @@ export default {
       "light-pink": "#FCF1EC",
       "black": "#000000",
       "lightest-grey": "#dbdbdb",
-      "current": 'currentColor',
+      "current": "currentColor",
     },
     gridTemplateColumns: {
       "soundboard": "repeat(auto-fill, 160px)",

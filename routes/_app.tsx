@@ -42,8 +42,8 @@ export default function App({ Component }: PageProps) {
         <script src="/themeLoader.js"></script>
       </head>
       <body class="dark:bg-dark-black dark:text-white bg-light-pink text-black">
-      <div class="w-11/12 mx-auto">
-        <Component />
+        <div class="w-11/12 mx-auto">
+          <Component />
         </div>
       </body>
     </html>
