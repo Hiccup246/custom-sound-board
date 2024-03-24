@@ -25,13 +25,17 @@ describe("filterByClipSource", () => {
     assertEquals(filteredDirectories, [mockSoundButtons[1]]);
   });
 
-  it("can filter SoundBoardButtons using multiple directory paths by matching the first directory then the second", () => {
+  it("can filter SoundBoardButtons using multiple directory paths by both the first and second directory", () => {
     const filteredDirectories = filterByClipSource(mockSoundButtons, [
       "a",
       "mock",
     ]);
 
-    assertEquals(filteredDirectories, [mockSoundButtons[2]]);
+    assertEquals(filteredDirectories, [
+      mockSoundButtons[0],
+      mockSoundButtons[2],
+      mockSoundButtons[3],
+    ]);
   });
 
   it("can filter SoundBoardButtons using multiple nested directories", () => {
@@ -46,13 +50,16 @@ describe("filterByClipSource", () => {
     ]);
   });
 
-  it("returns no results when the top level directory does not exist", () => {
+  it("returns nested directory matches when the top level directory does not exist", () => {
     const filteredDirectories = filterByClipSource(mockSoundButtons, [
       "random",
       "directory",
     ]);
 
-    assertEquals(filteredDirectories, []);
+    assertEquals(filteredDirectories, [
+      mockSoundButtons[2],
+      mockSoundButtons[3],
+    ]);
   });
 
   it("returns all SoundBoardButtons when no directories are given", () => {
