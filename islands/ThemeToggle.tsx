@@ -29,19 +29,19 @@ export default function ThemeToggle() {
 
   return (
     <div onClick={toggleTheme}>
-      <label class="flex items-center cursor-pointer relative">
+      <label class="flex items-center cursor-pointer relative toggle-wrapper">
         <input
           type="checkbox"
           class="sr-only"
           onClick={(event) => event.stopImmediatePropagation()}
         />
-        <div class="block dark:bg-white bg-white w-14 h-5 rounded-full"></div>
-        <div class="dot absolute left-1 bg-black w-6 h-3 rounded-full transition">
-        </div>
 
-        <div class="ml-3 dark:text-white text-black">
+        <span class="block dark:bg-white bg-white w-14 h-5 rounded-full"></span>
+        <span class="dot absolute left-1 bg-black w-6 h-3 rounded-full transition">
+        </span>
+        <span class="ml-3 dark:text-white text-black align-middle text-start">
           {theme}
-        </div>
+        </span>
       </label>
     </div>
   );

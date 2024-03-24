@@ -12,7 +12,7 @@
         -webkit-appearance: none;
     }
 
-    input:checked ~ .dot {
+    .toggle-wrapper:has(input:checked) > .dot {
         transform: translateX(100%);
-    }
+    }   
 }
