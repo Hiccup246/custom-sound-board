@@ -6,7 +6,13 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 export const handler: Handlers<
   { soundClips: SoundClip[]; soundClipDirs: string[] }
 > = {
-  async GET(_, ctx) {
+  async GET(req, ctx) {
+    const url = new URL(req.url);
+
+    if (url.hostname == "custom-sound-board.com") {
+      return Response.redirect("https://wwww.custom-sound-board.com", 308);
+    }
+
     const soundClips = await soundClipPaths("./static/sound-clips");
     const soundClipDirs = await soundClipDirectories("./static/sound-clips");
     return ctx.render({ soundClips, soundClipDirs });
