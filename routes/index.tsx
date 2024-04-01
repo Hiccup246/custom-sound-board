@@ -10,7 +10,7 @@ export const handler: Handlers<
     const url = new URL(req.url);
 
     if (url.hostname == "custom-sound-board.com") {
-      return Response.redirect("https://wwww.custom-sound-board.com", 308);
+      return Response.redirect("https://www.custom-sound-board.com", 308);
     }
 
     const soundClips = await soundClipPaths("./static/sound-clips");
