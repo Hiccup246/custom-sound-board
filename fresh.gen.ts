@@ -8,7 +8,7 @@ import * as $index from "./routes/index.tsx";
 import * as $SoundBoard from "./islands/SoundBoard.tsx";
 import * as $SoundBoardButton from "./islands/SoundBoardButton.tsx";
 import * as $ThemeToggle from "./islands/ThemeToggle.tsx";
-import { type Manifest } from "$fresh/server.ts";
+import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
